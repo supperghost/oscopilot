@@ -80,12 +80,34 @@ def run_agent(ctx: AppContext, one_shot_prompt: Optional[str] = None) -> None:
 
     if one_shot_prompt:
         result = executor.invoke({"input": text})
-        # 兼容不同 langchain 版本的返回结构
-        if isinstance(result, dict):
-            print(result.get("output") or result)
-        else:
-            # list / str 等，直接打印
-            print(result)
+        # 提取并打印 output 内容
+        print(type(result))
+
+        output = None
+
+        # 情况1：AgentFinish
+        if hasattr(result, "return_values"):
+            output = result.return_values.get("output")
+
+        # 情况2：dict
+        elif isinstance(result, dict):
+            output = result.get("output")
+
+        # 情况3：list
+        elif isinstance(result, list):
+            # 常见情况：list里最后一个是AgentFinish
+            for item in reversed(result):
+                if hasattr(item, "return_values"):
+                    output = item.return_values.get("output")
+                    break
+                elif isinstance(item, dict) and "output" in item:
+                    output = item["output"]
+                    break
+
+        # fallback
+        if output is None:
+            output = str(result)
+        print(output)
         return
 
     print("进入交互模式，输入 exit 退出。")
@@ -100,9 +122,31 @@ def run_agent(ctx: AppContext, one_shot_prompt: Optional[str] = None) -> None:
         if text.lower() in {"exit", "quit"}:
             break
         result = executor.invoke({"input": text})
-        # 兼容不同 langchain 版本的返回结构
-        if isinstance(result, dict):
-            print(result.get("output") or result)
-        else:
-            # list / str 等，直接打印
-            print(result)
+        # 提取并打印 output 内容
+        print(type(result))
+
+        output = None
+
+        # 情况1：AgentFinish
+        if hasattr(result, "return_values"):
+            output = result.return_values.get("output")
+
+        # 情况2：dict
+        elif isinstance(result, dict):
+            output = result.get("output")
+
+        # 情况3：list
+        elif isinstance(result, list):
+            # 常见情况：list里最后一个是AgentFinish
+            for item in reversed(result):
+                if hasattr(item, "return_values"):
+                    output = item.return_values.get("output")
+                    break
+                elif isinstance(item, dict) and "output" in item:
+                    output = item["output"]
+                    break
+
+        # fallback
+        if output is None:
+            output = str(result)
+        print(output)
