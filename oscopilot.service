@@ -1,0 +1,14 @@
+[Unit]
+Description=Oscopilot Linux OS Copilot Agent
+After=network.target
+
+[Service]
+Type=simple
+# 建议以用户服务运行，将本 unit 放在 ~/.config/systemd/user/oscopilot.service
+# 默认使用当前用户环境中的 oscopilot 可执行程序
+ExecStart=/usr/bin/env oscopilot agent run --config /etc/oscopilot/config.yaml
+WorkingDirectory=/etc/oscopilot
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,57 @@
+llm:
+  # OpenAI 兼容接口配置示例
+  base_url: "https://api.openai.com/v1"
+  api_key: "sk-your-token-here"
+  model: "gpt-4o"
+  timeout: 30
+
+policy:
+  # 允许的 systemctl/包管理等命令白名单（示例）
+  whitelist_commands:
+    - "systemctl_status"
+    - "systemctl_start"
+    - "systemctl_stop"
+    - "systemctl_restart"
+    - "pkg_search"
+    - "pkg_install"
+  # 高危模式黑名单示例：禁止 rm -rf / 等
+  blacklist_patterns:
+    - "rm -rf /"
+    - ":\(\){:|:&};:"
+  parameter_regex:
+    # 包名仅允许字母数字和 -_
+    name: "^[A-Za-z0-9_.-]+$"
+  max_operations_per_minute: 30
+
+audit:
+  log_path: "./logs/oscopilot.log"
+  audit_path: "./logs/audit.jsonl"
+  metrics_path: "./logs/metrics.json"
+
+approval:
+  enabled: true
+  dry_run: false
+  # interactive: 交互审批；queue: 入队等待 `oscopilot approve queue`
+  mode: "interactive"
+  queue_path: "./logs/approval_queue.jsonl"
+  prompt_prefix: "即将执行如下高风险操作，请仔细检查 Diff 并确认："
+
+mcp:
+  servers:
+    sysom_mcp:
+      command: "uv"
+      args:
+        - "run"
+        - "python"
+        - "sysom_main_mcp.py"
+        - "--stdio"
+      env: {}
+      cwd: "/path/to/sysom_mcp"
+      timeout_ms: 30000
+
+tools:
+  # 默认仅开启查询类工具，变更类工具需显式开启
+  enable_destructive_tools: false
+  allowed_write_tools:
+    - "append_hosts_mapping"
+  use_sudo: false

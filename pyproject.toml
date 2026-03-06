@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oscopilot"
+version = "0.1.0"
+description = "Linux OS Copilot Agent MVP"
+readme = "README.md"
+authors = [{ name = "oscopilot", email = "devnull@example.com" }]
+requires-python = ">=3.10"
+dependencies = [
+  "typer>=0.9.0",
+  "pyyaml>=6.0",
+  "psutil>=5.9.0",
+  "langchain>=0.2.0",
+  "langchain-openai>=0.1.0",
+]
+
+[project.scripts]
+oscopilot = "oscopilot.cli:main"
+
+[tool.setuptools.packages.find]
+where = [""]
+include = ["oscopilot*"]
