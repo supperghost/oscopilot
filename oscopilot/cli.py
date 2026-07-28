@@ -32,6 +32,9 @@ app.add_typer(policy_app, name="policy")
 report_app = typer.Typer(help="审计报告查看")
 app.add_typer(report_app, name="report")
 
+panic_app = typer.Typer(help="内核 Panic 分析工具")
+app.add_typer(panic_app, name="panic")
+
 
 def _load_app_context(config_path: Optional[str], actor: str = "oscopilot") -> AppContext:
     try:
@@ -152,6 +155,38 @@ def report_last(
         typer.echo("暂无审计记录。")
         return
     typer.echo(json.dumps(summary, ensure_ascii=False, indent=2))
+
+
+@panic_app.command("analyze")
+def panic_analyze(
+    vmcore: str = typer.Argument(..., help="kdump vmcore 文件路径"),
+    vmlinux: str = typer.Argument(..., help="vmlinux 符号文件路径（需与内核版本匹配）"),
+    config: Optional[str] = typer.Option(None, "--config", help="配置文件路径 (YAML)"),
+    max_rounds: int = typer.Option(10, "--max-rounds", help="最大分析轮数"),
+    output: Optional[str] = typer.Option(None, "--output", help="分析报告输出路径（JSON）"),
+):
+    """分析内核 Panic：加载 vmcore + vmlinux，借助 LLM 多轮分析定位根因。"""
+
+    ensure_no_invisible(vmcore, field="vmcore")
+    ensure_no_invisible(vmlinux, field="vmlinux")
+
+    ctx = _load_app_context(config)
+
+    from .panic.analyzer import PanicAnalyzer
+
+    analyzer = PanicAnalyzer(ctx)
+    result = analyzer.analyze(
+        vmcore_path=vmcore,
+        vmlinux_path=vmlinux,
+        max_rounds=max_rounds,
+    )
+
+    if output:
+        with open(output, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+        typer.echo(f"分析报告已保存至: {output}")
+    else:
+        typer.echo(json.dumps(result, ensure_ascii=False, indent=2))
 
 
 @app.command("demo-hosts")
