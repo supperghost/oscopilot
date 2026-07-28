@@ -1,0 +1,26 @@
+oscopilot/panic/analyzer.py
+  h_762db7fa8c82d6 1-324
+oscopilot/panic/crash_runner.py
+  h_762db7fa8c82d6 1-163
+oscopilot/panic/llm_client.py
+  h_762db7fa8c82d6 1-101
+oscopilot/cli.py
+  h_762db7fa8c82d6 35-36,160-189
+oscopilot/panic/prompts.py
+  h_762db7fa8c82d6 1-106
+oscopilot/panic/__init__.py
+  h_762db7fa8c82d6 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "2b2c90943dd48159ec1f1058ecff61f1697ac58f",
+  "prompts": {},
+  "humans": {
+    "h_762db7fa8c82d6": {
+      "author": "Shi Bin <shibin.allen@bytedance.com>"
+    }
+  },
+  "attestation_metadata": {},
+  "remote_transcripts": {}
+}
