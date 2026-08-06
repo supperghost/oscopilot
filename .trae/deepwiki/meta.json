@@ -1,0 +1,192 @@
+{
+  "current_version_id": 1,
+  "versions": [
+    {
+      "version_id": 1,
+      "status": {
+        "session_id": "6a7299d32109bb25322e19e9",
+        "commit_id": "2b2c90943dd48159ec1f1058ecff61f1697ac58f",
+        "generate_type": "full"
+      },
+      "catalogs": {
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/策略引擎与命令过滤.md": {
+          "content_hash": "3c96c6b888df9703101583786bf02d57750c3fb2594d4edc60bf8d696c5af4e6",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/策略引擎与命令过滤.md",
+          "chapter_number": "4.1"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/系统与服务管理工具.md": {
+          "content_hash": "76ab3c9a72e1da683e7dc0bc4731278fbbcd147d9240f87705ffe72e671e1181",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/系统与服务管理工具.md",
+          "chapter_number": "5.1"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/MCP 协议集成指南.md": {
+          "content_hash": "7fc64557fb0d4e1fc09919b0e99c0b5b447f0b48ed008a6e1752e9e8f01dee0d",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/MCP 协议集成指南.md",
+          "chapter_number": "5.3"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/结构化审计与日志追踪.md": {
+          "content_hash": "8d6708f2a0567fc8d770be5077721dda57996680275b29cf90b27dcb57f313e6",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/结构化审计与日志追踪.md",
+          "chapter_number": "4.3"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/Agent 核心逻辑实现.md": {
+          "content_hash": "ad5f66a9fc79e487d4bc59b98dcaa03f0b40e2cb93bccf264281b3c01485fcaa",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/Agent 核心逻辑实现.md",
+          "chapter_number": "3.1"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎.md": {
+          "content_hash": "7021c90aa31ffb14a82dba7907b1e6b2f2151293284688d4c91f9eab926be49b",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎.md",
+          "chapter_number": "3"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/工具调度与执行流.md": {
+          "content_hash": "6292e46d1327db4d949142de6bc7b3ff5d4f2ccacb711cfebd3801e7c0e84a86",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/工具调度与执行流.md",
+          "chapter_number": "3.3"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/文件与包管理工具.md": {
+          "content_hash": "3decffc7edd9f4682c6cb2ee85e0c30002527bb3ed4145d1d40ea8f398c20e76",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/文件与包管理工具.md",
+          "chapter_number": "5.2"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/人工审批工作流.md": {
+          "content_hash": "76f7e63613a22b8a849ca1bbaa812dd09daf75b0e52f942bb04ce6396ce957de",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/人工审批工作流.md",
+          "chapter_number": "4.2"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/配置与环境管理.md": {
+          "content_hash": "8626876a193ac68e08bbf327304fa8e0f67929b04aac6ca16ae7d586cb3ebbeb",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/配置与环境管理.md",
+          "chapter_number": "2"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/上下文与状态管理.md": {
+          "content_hash": "f886b6e7402bb3db625fe23b6b0f46c49d0afc0234ca94348e522046e0aa929d",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/上下文与状态管理.md",
+          "chapter_number": "3.2"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内核崩溃分析专项.md": {
+          "content_hash": "c77c1e65ed7e5183acf25b5404762f3b5dbac9415f3f23926af130ef559c3dd8",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内核崩溃分析专项.md",
+          "chapter_number": "6"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/项目简介与快速入门.md": {
+          "content_hash": "9fcf3760b53e57e30583726c427bdc64b9d047dd7b0fd47f05deefc252433066",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/项目简介与快速入门.md",
+          "chapter_number": "1"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/开发者指南与贡献.md": {
+          "content_hash": "c9dc667bba60a6ec0b1b98e5a4c6d1b2182f85207f5a06b36b7ffe5a8bf55f99",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/开发者指南与贡献.md",
+          "chapter_number": "8"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/部署、运维与 CLI 使用.md": {
+          "content_hash": "d06641a1ba892ad5a71bf48d8bd3f9ad5b66db6612a76d0c23f242c4033a14f1",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/部署、运维与 CLI 使用.md",
+          "chapter_number": "7"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制.md": {
+          "content_hash": "",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制.md",
+          "chapter_number": "4"
+        },
+        "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展.md": {
+          "content_hash": "02edc11d679fa634838ebe961be3ca44c891f1ec82193b50cdd05bd195bc0cf7",
+          "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展.md",
+          "chapter_number": "5"
+        }
+      }
+    }
+  ],
+  "status": {
+    "session_id": "6a7299d32109bb25322e19e9",
+    "commit_id": "2b2c90943dd48159ec1f1058ecff61f1697ac58f",
+    "generate_type": "full"
+  },
+  "catalogs": {
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/策略引擎与命令过滤.md": {
+      "content_hash": "3c96c6b888df9703101583786bf02d57750c3fb2594d4edc60bf8d696c5af4e6",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/策略引擎与命令过滤.md",
+      "chapter_number": "4.1"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/系统与服务管理工具.md": {
+      "content_hash": "76ab3c9a72e1da683e7dc0bc4731278fbbcd147d9240f87705ffe72e671e1181",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/系统与服务管理工具.md",
+      "chapter_number": "5.1"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/MCP 协议集成指南.md": {
+      "content_hash": "7fc64557fb0d4e1fc09919b0e99c0b5b447f0b48ed008a6e1752e9e8f01dee0d",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/MCP 协议集成指南.md",
+      "chapter_number": "5.3"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/结构化审计与日志追踪.md": {
+      "content_hash": "8d6708f2a0567fc8d770be5077721dda57996680275b29cf90b27dcb57f313e6",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/结构化审计与日志追踪.md",
+      "chapter_number": "4.3"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/Agent 核心逻辑实现.md": {
+      "content_hash": "ad5f66a9fc79e487d4bc59b98dcaa03f0b40e2cb93bccf264281b3c01485fcaa",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/Agent 核心逻辑实现.md",
+      "chapter_number": "3.1"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎.md": {
+      "content_hash": "7021c90aa31ffb14a82dba7907b1e6b2f2151293284688d4c91f9eab926be49b",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎.md",
+      "chapter_number": "3"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/工具调度与执行流.md": {
+      "content_hash": "6292e46d1327db4d949142de6bc7b3ff5d4f2ccacb711cfebd3801e7c0e84a86",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/工具调度与执行流.md",
+      "chapter_number": "3.3"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/文件与包管理工具.md": {
+      "content_hash": "3decffc7edd9f4682c6cb2ee85e0c30002527bb3ed4145d1d40ea8f398c20e76",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展/文件与包管理工具.md",
+      "chapter_number": "5.2"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/人工审批工作流.md": {
+      "content_hash": "76f7e63613a22b8a849ca1bbaa812dd09daf75b0e52f942bb04ce6396ce957de",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制/人工审批工作流.md",
+      "chapter_number": "4.2"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/配置与环境管理.md": {
+      "content_hash": "8626876a193ac68e08bbf327304fa8e0f67929b04aac6ca16ae7d586cb3ebbeb",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/配置与环境管理.md",
+      "chapter_number": "2"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/上下文与状态管理.md": {
+      "content_hash": "f886b6e7402bb3db625fe23b6b0f46c49d0afc0234ca94348e522046e0aa929d",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/核心架构与 Agent 引擎/上下文与状态管理.md",
+      "chapter_number": "3.2"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内核崩溃分析专项.md": {
+      "content_hash": "c77c1e65ed7e5183acf25b5404762f3b5dbac9415f3f23926af130ef559c3dd8",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内核崩溃分析专项.md",
+      "chapter_number": "6"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/项目简介与快速入门.md": {
+      "content_hash": "9fcf3760b53e57e30583726c427bdc64b9d047dd7b0fd47f05deefc252433066",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/项目简介与快速入门.md",
+      "chapter_number": "1"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/开发者指南与贡献.md": {
+      "content_hash": "c9dc667bba60a6ec0b1b98e5a4c6d1b2182f85207f5a06b36b7ffe5a8bf55f99",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/开发者指南与贡献.md",
+      "chapter_number": "8"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/部署、运维与 CLI 使用.md": {
+      "content_hash": "d06641a1ba892ad5a71bf48d8bd3f9ad5b66db6612a76d0c23f242c4033a14f1",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/部署、运维与 CLI 使用.md",
+      "chapter_number": "7"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制.md": {
+      "content_hash": "",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/安全、策略与审计机制.md",
+      "chapter_number": "4"
+    },
+    "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展.md": {
+      "content_hash": "02edc11d679fa634838ebe961be3ca44c891f1ec82193b50cdd05bd195bc0cf7",
+      "file_path": "/Users/bytedance/Workspace/oscopilot/.trae/deepwiki/内置工具集与 MCP 扩展.md",
+      "chapter_number": "5"
+    }
+  }
+}

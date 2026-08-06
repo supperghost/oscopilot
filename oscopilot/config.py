@@ -67,6 +67,16 @@ class ToolsConfig:
 
 
 @dataclass
+class PanicConfig:
+    """内核 Panic 分析配置。"""
+    default_max_rounds: int = 10
+    crash_timeout: int = 30  # 单个 crash 命令超时（秒）
+    llm_timeout: int = 60  # LLM 调用超时（秒）
+    output_max_tokens: int = 4096
+    enable_mock_mode: bool = False  # Mock 模式，不执行真实 crash 命令
+
+
+@dataclass
 class AppConfig:
     llm: LLMConfig
     policy: PolicyConfig = field(default_factory=PolicyConfig)
@@ -74,6 +84,7 @@ class AppConfig:
     approval: ApprovalConfig = field(default_factory=ApprovalConfig)
     mcp: MCPConfig = field(default_factory=MCPConfig)
     tools: ToolsConfig = field(default_factory=ToolsConfig)
+    panic: PanicConfig = field(default_factory=PanicConfig)
 
 
 class ConfigError(Exception):
@@ -169,6 +180,15 @@ def load_config(path: Optional[str] = None) -> AppConfig:
         use_sudo=bool(tools_raw.get("use_sudo", False)),
     )
 
+    panic_raw = raw.get("panic") or {}
+    panic = PanicConfig(
+        default_max_rounds=int(panic_raw.get("default_max_rounds", 10)),
+        crash_timeout=int(panic_raw.get("crash_timeout", 30)),
+        llm_timeout=int(panic_raw.get("llm_timeout", 60)),
+        output_max_tokens=int(panic_raw.get("output_max_tokens", 4096)),
+        enable_mock_mode=bool(panic_raw.get("enable_mock_mode", False)),
+    )
+
     return AppConfig(
         llm=llm,
         policy=policy,
@@ -176,5 +196,6 @@ def load_config(path: Optional[str] = None) -> AppConfig:
         approval=approval,
         mcp=mcp,
         tools=tools,
+        panic=panic,
     )
 

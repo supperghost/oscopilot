@@ -17,7 +17,7 @@ policy:
   # 高危模式黑名单示例：禁止 rm -rf / 等
   blacklist_patterns:
     - "rm -rf /"
-    - ":\(\){:|:&};:"
+    - ':(){:|:&};:'
   parameter_regex:
     # 包名仅允许字母数字和 -_
     name: "^[A-Za-z0-9_.-]+$"
@@ -55,3 +55,16 @@ tools:
   allowed_write_tools:
     - "append_hosts_mapping"
   use_sudo: false
+
+# 内核 Panic 分析配置
+panic:
+  # 默认最大分析轮数
+  default_max_rounds: 10
+  # 单个 crash 命令超时（秒）
+  crash_timeout: 30
+  # LLM 调用超时（秒）
+  llm_timeout: 60
+  # LLM 输出最大 token 数
+  output_max_tokens: 4096
+  # Mock 模式：不执行真实 crash 命令，使用模拟数据
+  enable_mock_mode: false

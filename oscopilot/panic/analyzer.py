@@ -72,10 +72,12 @@ class PanicAnalyzer:
     """内核 Panic 自动分析器。
 
     使用 crash 工具获取崩溃现场数据，借助 LLM 多轮分析定位根因。
+    支持 Mock 模式用于测试。
     """
 
-    def __init__(self, ctx: AppContext) -> None:
+    def __init__(self, ctx: AppContext, mock_mode: bool = False) -> None:
         self._ctx = ctx
+        self._mock_mode = mock_mode or ctx.config.panic.enable_mock_mode
         self._crash_runner: Optional[CrashRunner] = None
         self._llm_client: Optional[LLMClient] = None
         self._known_info: List[str] = []
@@ -103,20 +105,24 @@ class PanicAnalyzer:
         result = AnalysisResult(success=False)
 
         try:
-            # 初始化 crash runner
-            self._crash_runner = CrashRunner(vmcore_path, vmlinux_path)
+            # 初始化 crash runner（支持 Mock 模式）
+            self._crash_runner = CrashRunner(
+                vmcore_path,
+                vmlinux_path,
+                mock_mode=self._mock_mode,
+            )
             errors = self._crash_runner.validate()
             if errors:
                 result.error = "; ".join(errors)
                 self._log_audit(action_id, "validation_error", result.error)
                 return result.to_dict()
 
-            # 初始化 LLM 客户端
+            # 初始化 LLM 客户端（使用 panic 配置的超时）
             self._llm_client = LLMClient(
                 base_url=self._ctx.config.llm.base_url,
                 api_key=self._ctx.config.llm.api_key,
                 model=self._ctx.config.llm.model,
-                timeout=self._ctx.config.llm.timeout,
+                timeout=self._ctx.config.panic.llm_timeout,
             )
             self._llm_client.add_system_prompt(SYSTEM_PROMPT)
 
@@ -136,12 +142,13 @@ class PanicAnalyzer:
                         result.root_cause = llm_response
                         break
 
-                    # 执行 crash 命令
+                    # 执行 crash 命令（使用配置的超时）
                     commands = self._extract_commands(llm_response)
+                    crash_timeout = self._ctx.config.panic.crash_timeout
                     for cmd in commands:
                         print(f"  执行: {cmd}")
                         try:
-                            output = self._crash_runner.execute(cmd)
+                            output = self._crash_runner.execute(cmd, timeout=crash_timeout)
                             step = AnalysisStep(
                                 round=round_num,
                                 command=cmd,

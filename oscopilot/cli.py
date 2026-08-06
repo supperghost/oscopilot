@@ -162,8 +162,9 @@ def panic_analyze(
     vmcore: str = typer.Argument(..., help="kdump vmcore 文件路径"),
     vmlinux: str = typer.Argument(..., help="vmlinux 符号文件路径（需与内核版本匹配）"),
     config: Optional[str] = typer.Option(None, "--config", help="配置文件路径 (YAML)"),
-    max_rounds: int = typer.Option(10, "--max-rounds", help="最大分析轮数"),
+    max_rounds: int = typer.Option(None, "--max-rounds", help="最大分析轮数"),
     output: Optional[str] = typer.Option(None, "--output", help="分析报告输出路径（JSON）"),
+    mock: bool = typer.Option(False, "--mock", help="使用 Mock 模式，不执行真实 crash 命令"),
 ):
     """分析内核 Panic：加载 vmcore + vmlinux，借助 LLM 多轮分析定位根因。"""
 
@@ -174,10 +175,87 @@ def panic_analyze(
 
     from .panic.analyzer import PanicAnalyzer
 
-    analyzer = PanicAnalyzer(ctx)
+    # 使用配置中的默认值
+    if max_rounds is None:
+        max_rounds = ctx.config.panic.default_max_rounds
+
+    analyzer = PanicAnalyzer(ctx, mock_mode=mock)
     result = analyzer.analyze(
         vmcore_path=vmcore,
         vmlinux_path=vmlinux,
+        max_rounds=max_rounds,
+    )
+
+    if output:
+        with open(output, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+        typer.echo(f"分析报告已保存至: {output}")
+    else:
+        typer.echo(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+@panic_app.command("validate")
+def panic_validate(
+    vmcore: str = typer.Argument(..., help="kdump vmcore 文件路径"),
+    vmlinux: str = typer.Argument(..., help="vmlinux 符号文件路径"),
+):
+    """验证 Panic 分析环境：检查 crash 工具可用性、文件存在性等。"""
+
+    ensure_no_invisible(vmcore, field="vmcore")
+    ensure_no_invisible(vmlinux, field="vmlinux")
+
+    from .panic.crash_runner import CrashRunner
+
+    runner = CrashRunner(vmcore, vmlinux)
+    env_info = runner.get_env_info()
+
+    typer.echo("=== Panic 分析环境检查 ===\n")
+    typer.echo(f"crash 工具: {'✓ 可用' if env_info.crash_available else '✗ 不可用'}")
+    if env_info.crash_version:
+        typer.echo(f"crash 版本: {env_info.crash_version}")
+
+    typer.echo(f"vmcore 文件: {'✓ 存在' if env_info.vmcore_exists else '✗ 不存在'}")
+    if env_info.vmcore_size:
+        size_mb = env_info.vmcore_size / (1024 * 1024)
+        typer.echo(f"vmcore 大小: {size_mb:.2f} MB")
+
+    typer.echo(f"vmlinux 文件: {'✓ 存在' if env_info.vmlinux_exists else '✗ 不存在'}")
+    if env_info.vmlinux_size:
+        size_mb = env_info.vmlinux_size / (1024 * 1024)
+        typer.echo(f"vmlinux 大小: {size_mb:.2f} MB")
+
+    if env_info.is_ready:
+        typer.echo("\n✓ 环境检查通过，可以进行 Panic 分析。")
+    else:
+        typer.echo("\n✗ 环境检查失败:")
+        for error in env_info.errors:
+            typer.echo(f"  - {error}")
+        raise typer.Exit(code=1)
+
+
+@panic_app.command("mock-analyze")
+def panic_mock_analyze(
+    config: Optional[str] = typer.Option(None, "--config", help="配置文件路径 (YAML)"),
+    max_rounds: int = typer.Option(5, "--max-rounds", help="最大分析轮数"),
+    output: Optional[str] = typer.Option(None, "--output", help="分析报告输出路径（JSON）"),
+):
+    """使用 Mock 数据模拟 Panic 分析，用于测试和演示。"""
+
+    ctx = _load_app_context(config)
+
+    from .panic.analyzer import PanicAnalyzer
+
+    # 使用 Mock vmcore 和 vmlinux 路径（不需要真实存在）
+    mock_vmcore = "/tmp/mock_vmcore"
+    mock_vmlinux = "/tmp/mock_vmlinux"
+
+    typer.echo("=== Mock Panic 分析 ===")
+    typer.echo("使用模拟数据进行分析测试...\n")
+
+    analyzer = PanicAnalyzer(ctx, mock_mode=True)
+    result = analyzer.analyze(
+        vmcore_path=mock_vmcore,
+        vmlinux_path=mock_vmlinux,
         max_rounds=max_rounds,
     )
 
