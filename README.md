@@ -6,6 +6,7 @@
 
 ## 工程结构
 
+
 ```text
 os-copilot-agent/
   pyproject.toml          # Python 包配置，提供 oscopilot CLI
