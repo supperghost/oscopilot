@@ -2,6 +2,7 @@
 
 本项目提供一个可安装的 Python 包与 CLI：`oscopilot`，用于在 Linux 系统上安全运行 OS Copilot Agent 的最小可用版本（MVP）。
 
+
 > 目标场景：常见问题排查（CPU/内存/磁盘/网络/进程/服务 systemd/日志）、工具与软件部署（apt/yum/dnf）、健康巡检与报告生成，默认支持 Ubuntu/Debian 与 RHEL/CentOS 系。
 
 ## 工程结构
