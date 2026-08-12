@@ -275,8 +275,11 @@ def detect_hidden_procs(
     config: Optional[str] = typer.Option(None, "--config", help="配置文件路径 (YAML)"),
     summary_only: bool = typer.Option(False, "--summary-only", help="仅输出摘要，不打印完整报告"),
 ):
-    """检测可疑/隐藏进程：通过 /proc、psutil、ps 三源对比 PID，
-    识别在 /proc 中存在但 ps/top 看不到的隐藏进程，并扫描其他可疑特征。"""
+    """检测可疑/隐藏进程：按三层架构（进程发现/隐藏检测/行为检测）全面扫描。
+
+    覆盖 9 种检测技术：三源 PID 对比、内核模块隐藏、LD_PRELOAD rootkit、
+    PID namespace 异常、ptrace 注入、socket 隐藏、exe 已删除、匿名可执行内存、
+    伪装进程名与异常父子关系。"""
 
     ctx = _load_app_context(config)
     report = hidden_procs.detect_hidden_processes(ctx)

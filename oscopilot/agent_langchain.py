@@ -34,9 +34,11 @@ def _build_tools(ctx: AppContext):
 
     @tool("detect_hidden_processes")
     def detect_hidden_processes() -> str:  # type: ignore[override]
-        """检测可疑/隐藏进程：通过 /proc、psutil、ps 三源对比 PID，
-        识别在 /proc 中存在但 ps/top 看不到的隐藏进程，并扫描其他可疑特征
-        （如 exe 已删除、cmdline 为空等）。"""
+        """检测可疑/隐藏进程：按三层架构全面扫描 Linux 系统中的隐藏进程与 Rootkit 行为。
+
+        覆盖 9 种检测技术：三源 PID 对比、内核模块隐藏、LD_PRELOAD rootkit、
+        PID namespace 异常、ptrace 注入、socket 隐藏、exe 已删除、匿名可执行内存、
+        伪装进程名与异常父子关系。"""
         import json as _json
         report = hidden_procs.detect_hidden_processes(ctx)
         return _json.dumps(report, ensure_ascii=False, indent=2)
