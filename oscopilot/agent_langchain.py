@@ -15,7 +15,7 @@ from langchain.agents import create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 from .context import AppContext
-from .tools import system_info, files
+from .tools import system_info, files, hidden_procs
 
 
 def _build_tools(ctx: AppContext):
@@ -32,7 +32,16 @@ def _build_tools(ctx: AppContext):
         line = f"{ip} {hostname}"
         return files.append_line_with_approval(ctx, "/etc/hosts", line=line)
 
-    return [check_cpu_and_top_processes, append_hosts_mapping]
+    @tool("detect_hidden_processes")
+    def detect_hidden_processes() -> str:  # type: ignore[override]
+        """检测可疑/隐藏进程：通过 /proc、psutil、ps 三源对比 PID，
+        识别在 /proc 中存在但 ps/top 看不到的隐藏进程，并扫描其他可疑特征
+        （如 exe 已删除、cmdline 为空等）。"""
+        import json as _json
+        report = hidden_procs.detect_hidden_processes(ctx)
+        return _json.dumps(report, ensure_ascii=False, indent=2)
+
+    return [check_cpu_and_top_processes, append_hosts_mapping, detect_hidden_processes]
 
 
 

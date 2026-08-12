@@ -12,7 +12,7 @@ from .auditing import AuditEvent, now_iso
 from .config import AppConfig, ConfigError, load_config
 from .context import AppContext, build_app_context
 from .policy import Operation
-from .tools import mcp_client, system_info, files
+from .tools import mcp_client, system_info, files, hidden_procs
 from .utils import ensure_no_invisible
 
 app = typer.Typer(help="Linux OS Copilot Agent CLI")
@@ -34,6 +34,9 @@ app.add_typer(report_app, name="report")
 
 panic_app = typer.Typer(help="内核 Panic 分析工具")
 app.add_typer(panic_app, name="panic")
+
+detect_app = typer.Typer(help="可疑进程/隐藏进程检测")
+app.add_typer(detect_app, name="detect")
 
 
 def _load_app_context(config_path: Optional[str], actor: str = "oscopilot") -> AppContext:
@@ -265,6 +268,24 @@ def panic_mock_analyze(
         typer.echo(f"分析报告已保存至: {output}")
     else:
         typer.echo(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+@detect_app.command("hidden-procs")
+def detect_hidden_procs(
+    config: Optional[str] = typer.Option(None, "--config", help="配置文件路径 (YAML)"),
+    summary_only: bool = typer.Option(False, "--summary-only", help="仅输出摘要，不打印完整报告"),
+):
+    """检测可疑/隐藏进程：通过 /proc、psutil、ps 三源对比 PID，
+    识别在 /proc 中存在但 ps/top 看不到的隐藏进程，并扫描其他可疑特征。"""
+
+    ctx = _load_app_context(config)
+    report = hidden_procs.detect_hidden_processes(ctx)
+
+    if summary_only:
+        typer.echo(report["summary"])
+        return
+
+    typer.echo(json.dumps(report, ensure_ascii=False, indent=2))
 
 
 @app.command("demo-hosts")
