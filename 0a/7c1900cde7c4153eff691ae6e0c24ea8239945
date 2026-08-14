@@ -1,0 +1,14 @@
+test.py
+  h_2b0659b1367eda 34
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.2",
+  "base_commit_sha": "0a7c1900cde7c4153eff691ae6e0c24ea8239945",
+  "prompts": {},
+  "humans": {
+    "h_2b0659b1367eda": {
+      "author": "supperghost <286363861@qq.com>"
+    }
+  }
+}
