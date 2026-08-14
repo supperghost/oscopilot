@@ -31,12 +31,7 @@ headers = {
 }
 
 cookies = {
-    "gdpr": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwc20iOiJzeXN0ZW0ubW9uaXRvci5ncmFmYW5hIiwidXNlciI6InNoaWJpbi5hbGxlbkBieXRlZGFuY2UuY29tIiwidXNlcm5hbWUiOiJzaGliaW4uYWxsZW4ifQ.LHqheVVWAgqFW5cvv4FCC8I6u9rxOIeqrTBa5LPzl6Q",
-    "x-grafana-username": "shibin.allen",
-    "_ssa_username": "shibin.allen",
-    "grafana_session_v1": "319edbfb11563cc475c796960732f8e2",
-    "_ssa_userphone": "",
-    "bd_sso_3b6da9": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NzI2MDYyMTcsImlhdCI6MTc3MjAwMTQxNywiaXNzIjoic3NvLmJ5dGVkYW5jZS5jb20iLCJzdWIiOiJrZDFpOXBiMjZ2aXdreTZzdGZpZiIsInRlbmFudF9pZCI6ImhncTN0Y2NwM2kxc2pqbjU4emlrIn0.dRfh4-2fORBfIV2EubelCAkY3aAsMt3TNEKVqFdX4z66zvBhe7JeE34-ue_E-zVVoIxDFeqdkmu-SRWblbvid7RAq9zcRbBSxxWV1QEe2Uy9lvnXe2glWmr_1RvqfxYYadm7j-ISk2RNunVJaCLhJMegWljMtZ7aKOlo8XsVIk_g9LXozp1WVhGNs-VR2S6XhnwCBNudAS4HD7locn_m1j3aRzv2YC_5N797QpyLGlXdWDI-oA16HopOYta5-lEK0UVbX7qekEhNg7LyzvZ2QWBWVZFD4fiSDtq7wZVriyQr2pFin_8Nm7d0aQkdDeB2u0xc4PqNdPLeQi48LAYU1A"
+   
 }
 
 data_disk = {
